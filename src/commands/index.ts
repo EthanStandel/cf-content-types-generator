@@ -28,6 +28,12 @@ class ContentfulMdg extends Command {
     jsdoc: Flags.boolean({ char: 'd', description: 'add JSDoc comments' }),
     typeguard: Flags.boolean({ char: 'g', description: 'add modern type guards' }),
     response: Flags.boolean({ char: 'r', description: 'add response types' }),
+    modifiers: Flags.string({
+      char: 'm',
+      description: 'default Modifiers type parameter value',
+      multiple: true,
+      options: ['WITH_ALL_LOCALES', 'WITHOUT_LINK_RESOLUTION', 'WITHOUT_UNRESOLVABLE_LINKS'],
+    }),
 
     // remote access
     spaceId: Flags.string({ char: 's', description: 'space id' }),

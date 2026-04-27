@@ -11,7 +11,21 @@ import { CFContentType } from '../../types';
 import { BaseContentTypeRenderer } from './base-content-type-renderer';
 import { createContext, RenderContext } from './create-context';
 
+export type ContentTypeRendererOptions = {
+  defaultModifiers: string[];
+};
+
+const defaultContentTypeRendererOptions: ContentTypeRendererOptions = {
+  defaultModifiers: [],
+};
+
 export class ContentTypeRenderer extends BaseContentTypeRenderer {
+  private readonly options: ContentTypeRendererOptions;
+  constructor(options?: Partial<ContentTypeRendererOptions>) {
+    super();
+    this.options = { ...defaultContentTypeRendererOptions, ...options };
+  }
+
   public render(contentType: CFContentType, file: SourceFile): void {
     const context = this.createContext();
 
@@ -97,10 +111,14 @@ export class ContentTypeRenderer extends BaseContentTypeRenderer {
     contentType: CFContentType,
     context: RenderContext,
   ): OptionalKind<TypeAliasDeclarationStructure> {
+    const modifiersParam = this.options.defaultModifiers.length
+      ? `Modifiers extends ChainModifiers = ${this.options.defaultModifiers.map((m) => `"${m}"`).join(' | ')}`
+      : 'Modifiers extends ChainModifiers';
+
     return {
       name: renderTypeGeneric(
         context.moduleName(contentType.sys.id),
-        'Modifiers extends ChainModifiers',
+        modifiersParam,
         'Locales extends LocaleCode = LocaleCode',
       ),
       isExported: true,
