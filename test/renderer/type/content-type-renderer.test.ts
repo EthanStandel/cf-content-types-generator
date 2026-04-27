@@ -119,7 +119,7 @@ describe('ContentTypeRenderer', () => {
         }
 
         export type TypeTestSkeleton = EntrySkeletonType<TypeTestFields, "test">;
-        export type TypeTest<Modifiers extends ChainModifiers = "WITH_ALL_LOCALES" | "WITHOUT_LINK_RESOLUTION", Locales extends LocaleCode = LocaleCode> = Entry<TypeTestSkeleton, Modifiers, Locales>;
+        export type TypeTest<Modifiers extends ChainModifiers = "WITHOUT_LINK_RESOLUTION" | "WITH_ALL_LOCALES", Locales extends LocaleCode = LocaleCode> = Entry<TypeTestSkeleton, Modifiers, Locales>;
       `).trim(),
     );
   });
