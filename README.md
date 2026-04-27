@@ -172,7 +172,7 @@ export type TypeAnimalWithAllLocalesResponse<Locales extends LocaleCode = Locale
 
 ### `-m, --modifiers`
 
-Adds default modifiers to resolved types. Multiple modifiers are allows and will be unionized. Valid options are `WITH_ALL_LOCALES`, `WITHOUT_LINK_RESOLUTION`, and `WITHOUT_UNRESOLVABLE_LINKS`.
+Adds default modifiers to resolved types. Multiple modifiers are allows and will be unionized. Valid options are `WITH_ALL_LOCALES`, `WITHOUT_LINK_RESOLUTION`, `WITHOUT_UNRESOLVABLE_LINKS`, `WITH_LOCALE_BASED_PUBLISHING`, `undefined`.
 
 ```
 --modifiers WITH_ALL_LOCALES --modifiers WITHOUT_LINK_RESOLUTION

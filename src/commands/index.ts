@@ -32,7 +32,13 @@ class ContentfulMdg extends Command {
       char: 'm',
       description: 'default Modifiers type parameter value',
       multiple: true,
-      options: ['WITH_ALL_LOCALES', 'WITHOUT_LINK_RESOLUTION', 'WITHOUT_UNRESOLVABLE_LINKS'],
+      options: [
+        'WITH_ALL_LOCALES',
+        'WITHOUT_LINK_RESOLUTION',
+        'WITHOUT_UNRESOLVABLE_LINKS',
+        'WITH_LOCALE_BASED_PUBLISHING',
+        'undefined',
+      ],
     }),
 
     // remote access

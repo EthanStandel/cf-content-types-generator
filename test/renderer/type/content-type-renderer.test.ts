@@ -98,6 +98,30 @@ describe('ContentTypeRenderer', () => {
     );
   });
 
+  it('renders with a single default undefined modifier', () => {
+    const renderer = new ContentTypeRenderer({ defaultModifiers: ['undefined'] });
+
+    const contentType: CFContentType = {
+      name: 'unused-name',
+      sys: { id: 'test', type: 'Symbol' },
+      fields: [],
+    };
+
+    renderer.render(contentType, testFile);
+
+    expect(('\n' + testFile.getFullText()).trim()).toEqual(
+      stripIndent(`
+        import type { ChainModifiers, Entry, EntrySkeletonType, LocaleCode } from "contentful";
+
+        export interface TypeTestFields {
+        }
+
+        export type TypeTestSkeleton = EntrySkeletonType<TypeTestFields, "test">;
+        export type TypeTest<Modifiers extends ChainModifiers = undefined, Locales extends LocaleCode = LocaleCode> = Entry<TypeTestSkeleton, Modifiers, Locales>;
+      `).trim(),
+    );
+  });
+
   it('renders with multiple default modifiers as a union', () => {
     const renderer = new ContentTypeRenderer({
       defaultModifiers: ['WITH_ALL_LOCALES', 'WITHOUT_LINK_RESOLUTION'],
